@@ -1,5 +1,6 @@
 package com.arman.myapplication.di
 
+import android.content.Context
 import androidx.room.Room
 import com.arman.myapplication.Application.Application
 import com.arman.myapplication.data.UserDao
@@ -8,6 +9,7 @@ import com.arman.myapplication.data.UserRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
@@ -17,9 +19,9 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideUserDatabase(app: Application): UserDatabase {
+    fun provideUserDatabase(@ApplicationContext context: Context): UserDatabase {
         return Room.databaseBuilder(
-            app,
+            context,
             UserDatabase::class.java,
             "user_db"
         ).build()

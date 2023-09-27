@@ -1,5 +1,6 @@
 package com.arman.myapplication.Signin
 
+import android.provider.ContactsContract.CommonDataKinds.Phone
 import android.util.LayoutDirection
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -39,11 +40,17 @@ import androidx.compose.ui.unit.sp
 
 
 @Composable
-fun SigninScreen(onClickLogin: (String) -> Unit, onClickSignIn: () -> Unit) {
-    var fullName by remember { mutableStateOf(TextFieldValue("")) }
-    var userName by remember { mutableStateOf(TextFieldValue("")) }
-    var passwd by remember { mutableStateOf(TextFieldValue("")) }
-    var passwdOnConfirm by remember { mutableStateOf(TextFieldValue("")) }
+fun SigninScreen(
+    fullname: String,
+    phone: String,
+    password: String,
+    passwordonconfirm: String,
+    onChangeFullname:(String) -> Unit,
+    onChangePhone:(String) -> Unit,
+    onChangePassword:(String) -> Unit,
+    OnChangePasswordonconfirm:(String) -> Unit,
+    onClickSignIn: () -> Unit,
+    ) {
     var passwdVisible by remember { mutableStateOf(false) }
 
     CompositionLocalProvider(LocalLayoutDirection provides androidx.compose.ui.unit.LayoutDirection.Rtl) {
@@ -75,9 +82,9 @@ fun SigninScreen(onClickLogin: (String) -> Unit, onClickSignIn: () -> Unit) {
                 modifier = Modifier
                     .fillMaxWidth(0.75f)
                     .padding(15.dp),
-                value = fullName,
+                value = fullname,
                 onValueChange = {
-                    fullName = it
+                    onChangeFullname(it)
                 },
                 shape = RoundedCornerShape(12.dp),
                 placeholder = {
@@ -98,9 +105,9 @@ fun SigninScreen(onClickLogin: (String) -> Unit, onClickSignIn: () -> Unit) {
                 modifier = Modifier
                     .fillMaxWidth(0.75f)
                     .padding(15.dp),
-                value = userName,
+                value = phone,
                 onValueChange = {
-                    userName = it
+                    onChangePhone(it)
                 },
                 shape = RoundedCornerShape(12.dp),
                 placeholder = {
@@ -121,9 +128,9 @@ fun SigninScreen(onClickLogin: (String) -> Unit, onClickSignIn: () -> Unit) {
                 modifier = Modifier
                     .fillMaxWidth(0.75f)
                     .padding(15.dp),
-                value = passwd,
+                value = password,
                 onValueChange = {
-                    passwd = it
+                    onChangePassword(it)
                 },
                 shape = RoundedCornerShape(12.dp),
                 placeholder = {
@@ -158,9 +165,9 @@ fun SigninScreen(onClickLogin: (String) -> Unit, onClickSignIn: () -> Unit) {
                 modifier = Modifier
                     .fillMaxWidth(0.75f)
                     .padding(15.dp),
-                value = passwdOnConfirm,
+                value = passwordonconfirm,
                 onValueChange = {
-                    passwdOnConfirm = it
+                    OnChangePasswordonconfirm(it)
                 },
                 shape = RoundedCornerShape(12.dp),
                 placeholder = {
@@ -195,9 +202,7 @@ fun SigninScreen(onClickLogin: (String) -> Unit, onClickSignIn: () -> Unit) {
                 modifier = Modifier.fillMaxWidth(0.40f),
                 shape = RoundedCornerShape(12.dp),
                 onClick = {
-                    onClickLogin(
-                        fullName.text
-                    )
+                    onClickSignIn()
                 },
                 elevation = ButtonDefaults.buttonElevation(
                     defaultElevation = 5.dp,

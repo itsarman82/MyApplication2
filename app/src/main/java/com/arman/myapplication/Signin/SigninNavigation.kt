@@ -13,8 +13,8 @@ fun NavHostController.navigateToSignin() {
 }
 
 
-fun NavGraphBuilder.signinScreen() {
+fun NavGraphBuilder.signinScreen(onClickSignin: () -> Unit) {
     composable(signinNavigationRoute) {
-        SigninRoute()
+        SigninRoute(onClickSignin = onClickSignin)
     }
 }

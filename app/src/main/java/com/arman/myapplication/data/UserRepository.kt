@@ -1,11 +1,12 @@
 package com.arman.myapplication.data
 
+import java.util.concurrent.Flow
 import javax.inject.Inject
 
 class UserRepository @Inject constructor(
     private val dao: UserDao
 ) : UserDao {
-    override suspend fun addUser(user: User): Boolean {
+    override suspend fun addUser(user: User) {
         return dao.addUser(user)
     }
 

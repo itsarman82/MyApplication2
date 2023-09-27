@@ -11,6 +11,7 @@ import com.arman.myapplication.Signin.signinScreen
 import com.arman.myapplication.login.LoginScreen
 import com.arman.myapplication.login.loginNavigationRoute
 import com.arman.myapplication.login.loginScreen
+import com.arman.myapplication.login.navigateToLogin
 
 @Composable
 fun ApplicationNavHost(
@@ -24,7 +25,7 @@ fun ApplicationNavHost(
         modifier = Modifier
     ){
         loginScreen(onClickSignIn = navController::navigateToSignin, onClickLogin = navController::navigateToMainScreen)
-        signinScreen()
+        signinScreen(onClickSignin = navController::navigateToSignin)
         mainScreen()
     }
 }
