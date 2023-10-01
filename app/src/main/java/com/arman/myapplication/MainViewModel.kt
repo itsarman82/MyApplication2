@@ -6,5 +6,4 @@ import javax.inject.Inject
 
 class MainViewModel @Inject constructor(
     @ApplicationContext context: ApplicationContext
-) : ViewModel() {
-}
+) : ViewModel()
