@@ -7,6 +7,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -61,6 +63,9 @@ fun SigninRoute(
                     modifier = Modifier
                         .fillMaxWidth(),
                     shape = RoundedCornerShape(8.dp),
+                    colors = CardDefaults.cardColors(
+                        containerColor = MaterialTheme.colorScheme.primary,
+                    ),
                 ) {
                     Spacer(modifier = Modifier.height(10.dp))
                     Text(
@@ -69,7 +74,8 @@ fun SigninRoute(
                             .fillMaxWidth()
                             .padding(top = 10.dp, bottom = 10.dp),
                         text = (uiState as SigninUIStateUIState.Error).message,
-                        textAlign = TextAlign.Center
+                        textAlign = TextAlign.Center,
+                        color = MaterialTheme.colorScheme.onPrimary
                     )
                     Spacer(modifier = Modifier.height(20.dp))
                     TextButton(
@@ -80,6 +86,7 @@ fun SigninRoute(
                     ) {
                         Text(
                             text = "فهمیدم",
+                            color = MaterialTheme.colorScheme.onPrimary
                         )
                     }
                 }
