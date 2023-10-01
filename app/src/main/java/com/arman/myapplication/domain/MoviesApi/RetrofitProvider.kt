@@ -1,4 +1,4 @@
-package com.arman.myapplication.MainScreen.MoviesApi
+package com.arman.myapplication.domain.MoviesApi
 
 import dagger.Module
 import dagger.Provides
@@ -17,7 +17,7 @@ class RetrofitProvider {
     }
 
     @Provides
-    fun providesMoviesApiRepository(retrofit: Retrofit): MoviesApi{
+    fun providesMoviesApiRepository(retrofit: Retrofit): MoviesApi {
         return retrofit.create(MoviesApi::class.java)
     }
 }

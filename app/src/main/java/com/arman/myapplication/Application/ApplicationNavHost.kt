@@ -25,7 +25,7 @@ fun ApplicationNavHost(
         modifier = Modifier
     ){
         loginScreen(onClickSignIn = navController::navigateToSignin, onClickLogin = navController::navigateToMainScreen)
-        signinScreen(onClickSignin = navController::navigateToSignin)
+        signinScreen(onClickSignin = navController::navigateToLogin)
         mainScreen()
     }
 }

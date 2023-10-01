@@ -7,7 +7,9 @@ import androidx.navigation.compose.composable
 const val loginNavigationRoute = "login_route"
 
 fun NavHostController.navigateToLogin() {
-
+    this.navigate(loginNavigationRoute){
+        launchSingleTop = true
+    }
 }
 
 

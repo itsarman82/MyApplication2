@@ -1,6 +1,8 @@
 package com.arman.myapplication.Signin
 
+import android.preference.PreferenceDataStore
 import android.provider.ContactsContract.CommonDataKinds.Phone
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -15,13 +17,17 @@ import javax.inject.Inject
 @HiltViewModel
 class SigninViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle,
-    private val userRepository: UserRepository
+    private val userRepository: UserRepository,
 ) : ViewModel() {
     val fullName = savedStateHandle.getStateFlow(FULLNAME, "")
     val phone = savedStateHandle.getStateFlow(PHONE,"")
     val password = savedStateHandle.getStateFlow(PASSWORD, "")
     val passwordonconfirm = savedStateHandle.getStateFlow(PASSWORDONCONFIRM,"")
-    val uiState:StateFlow<SigninUIStateUIState> = savedStateHandle.getStateFlow(STATE, SigninUIStateUIState.Loading)
+    val uiState:StateFlow<SigninUIStateUIState> = savedStateHandle.getStateFlow(STATE, SigninUIStateUIState.Content)
+
+    fun onChangeUiState(uiState: SigninUIStateUIState) {
+        savedStateHandle[STATE] = uiState
+    }
 
     fun onChangeFullname(fullName: String) {
         savedStateHandle[FULLNAME] = fullName
